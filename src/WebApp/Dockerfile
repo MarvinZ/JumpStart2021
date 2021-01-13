@@ -7,7 +7,7 @@ RUN apt-get update -yq \
     && apt-get install nodejs -yq
 WORKDIR /app
 EXPOSE 80
-# EXPOSE 443
+EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 RUN apt-get update -yq \
@@ -15,10 +15,10 @@ RUN apt-get update -yq \
     && curl -sL https://deb.nodesource.com/setup_10.x | bash \
     && apt-get install nodejs -yq
 WORKDIR /src
-COPY ["src/WebApp/WebApp.csproj", "src/WebApp/"]
-RUN dotnet restore "src/WebApp/WebApp.csproj"
+COPY .  "WebApp/"
+RUN dotnet restore "WebApp/WebApp.csproj"
 COPY . .
-WORKDIR "/src/src/WebApp"
+WORKDIR "/src/WebApp"
 RUN dotnet build "WebApp.csproj" -c Release -o /app/build
 
 FROM build AS publish

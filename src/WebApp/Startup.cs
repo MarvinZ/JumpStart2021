@@ -5,6 +5,9 @@ namespace WebApp
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.DataProtection;
+    using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption;
+    using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -22,6 +25,7 @@ namespace WebApp
     using NSwag.Generation.Processors.Security;
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Net.Http;
     using System.Security.Claims;
@@ -41,6 +45,15 @@ namespace WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //services.AddDataProtection().PersistKeysToFileSystem(new DirectoryInfo(@"C:\temp-keys\"))
+            //    .UseCryptographicAlgorithms(new AuthenticatedEncryptorConfiguration()
+            //    {
+            //        EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
+            //        ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
+            //    });
+
+
             services.AddScoped<DogsRepository>();
 
 
@@ -121,8 +134,8 @@ namespace WebApp
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
-                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200") // use 'ng serve' seperatly
+                  //  spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200"); // use 'ng serve' seperatly
                 }
             });
         }

@@ -1,12 +1,22 @@
 version: '3.4'
 
-services:
-  webapp:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
-    ports:
-      - "80"
-      - "443"
-    volumes:
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+services: 
+    nginx:
+        build: 
+            context: ./Nginx
+            dockerfile: Dockerfile
+        ports: 
+            - 8055:80
+        restart: always
+    client:
+        build:
+            context: ./src/WebApp/ClientApp
+            dockerfile: Dockerfile
+        ports: 
+            - 5000:80
+    dncapi:
+        build: 
+            context: ./src/WebApp
+            dockerfile: Dockerfile
+        ports: 
+            - 3000:80

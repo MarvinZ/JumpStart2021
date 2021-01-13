@@ -1,17 +1,22 @@
 version: '3.4'
 
-services:
-  webapp:
-    image: ${DOCKER_REGISTRY-}webapp
-    build:
-      context: .
-      dockerfile: src/WebApp/Dockerfile
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+80
-      - ASPNETCORE_HTTPS_PORT=44311
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=madison
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/dev_cert.pfxx
-
-    volumes:
-      - ./conf.d/https/:/https/
+services: 
+    nginx:
+        build: 
+            context: ./Nginx
+            dockerfile: Dockerfile
+        ports: 
+            - 8055:80
+        restart: always
+    client:
+        build:
+            context: ./src/WebApp/ClientApp
+            dockerfile: Dockerfile
+        ports: 
+            - 5000:80
+    dncapi:
+        build: 
+            context: ./src/WebApp
+            dockerfile: Dockerfile
+        ports: 
+            - 3000:80
