@@ -9,7 +9,6 @@ export class FetchDataPostgresComponent {
   public result: Dog[];
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    baseUrl = 'http://dncapi/';
     console.log('weather: get=', baseUrl + 'api/v1/weatherforecasts/GetDogs');
     http.get<Dog[]>(baseUrl + 'api/v1/weatherforecasts/GetDogs').subscribe(result => { // TODO: use generated API client
       console.log('weather: data=', result);

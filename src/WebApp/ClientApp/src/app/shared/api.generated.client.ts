@@ -22,7 +22,7 @@ export class UserProfileClient {
 
     constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
-        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "/api";
     }
 
     get(): Observable<{ [key: string]: string; }> {
@@ -241,7 +241,7 @@ export class WeatherForecast implements IWeatherForecast {
         data["temperatureC"] = this.temperatureC;
         data["temperatureF"] = this.temperatureF;
         data["summary"] = this.summary;
-        return data; 
+        return data;
     }
 }
 
@@ -283,7 +283,7 @@ export class Dog implements IDog {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["name"] = this.name;
-        return data; 
+        return data;
     }
 }
 
