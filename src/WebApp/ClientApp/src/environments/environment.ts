@@ -5,7 +5,7 @@
 import { KeycloakConfig } from 'keycloak-js';
 
 const keycloakConfig: KeycloakConfig = {
-  url: 'http://localhost:8080/auth/',
+  url: 'http://host.docker.internal:8080/auth/',
   realm: 'master',
   clientId: 'demo'
 };
