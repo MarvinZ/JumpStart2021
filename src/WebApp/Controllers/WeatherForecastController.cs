@@ -8,7 +8,7 @@
     using System.Linq;
     using WebApp.Models;
 
-   // [Authorize] // (Roles = "role1")
+    [Authorize] // (Roles = "role1")
     [ApiController]
     [ApiVersion("1.0")]
     [Route("/api/v{version:apiVersion}/weatherforecasts")]

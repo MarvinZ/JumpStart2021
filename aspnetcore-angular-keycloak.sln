@@ -26,6 +26,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Nginx\Dockerfile = Nginx\Dockerfile
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nginx", "Nginx", "{FA32C3F9-1030-4D63-AD9F-253F4D6CAD4B}"
+	ProjectSection(SolutionItems) = preProject
+		Nginx\default.conf = Nginx\default.conf
+		Nginx\Dockerfile = Nginx\Dockerfile
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
